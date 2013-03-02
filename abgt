@@ -16,11 +16,11 @@
 # followed by the command and its expanded arguments or associated word list.
 # (in plain english: print everything that gets executed, great for debugging)
 
-# set -o errexit
+set -o errexit
 # Exit immediately if a simple command (see SHELL GRAMMAR) exits with a
 # non-zero status. 
 
-# set -o nounset
+set -o nounset
 # Treat unset variables as an error when performing parameter expansion.  If
 # expansion is attempted on an unset variable, the shell prints an error
 # message, and, if not interactive, exits with a non-zero status.
@@ -29,50 +29,10 @@
 # use lower case variable names, to avoid conflicts with any environment
 # variables (which are upper case by convention)
 tmpdir="/tmp/$RANDOM-$RANDOM-$RANDOM"
-#variable="value"
 feed_path="$tmpdir/feed.xml"
+number_of_episodes=20
 
 # -- functions -----------------------------------------------------------------
-# * function bodies can not be empty
-#
-# * must be declared before called
-#
-# * does not have scope, any variable delcared is "global", unless using the
-#   'local' keyword
-#
-# * The 'return' statement sets the exit code of the function (what value $? will
-#   have after the function has executed). If no return statement is present,
-#   then $? will have the value of the last command executed in the function.
-#
-# * functions take positional parameters in the same way as script executables
-#   except for $0 which is always the name of the file executed, not the name
-#   of the function.
-#function f1() {
-#    # A successful function with output to stdout and stderr.
-#    # does not conflict with global
-#    local variable="value2"
-#    global_variable="global stuff"
-#    echo "    function outputing to stdout"
-#    echo "    ERROR: function outputing to stderr" 1>&2
-#    return 0
-#}
-#
-#function f2() {
-#    # a failing function with output to stdout and stderr
-#    f1
-#    return 1
-#}
-#
-#function f3() {
-#    echo "--> executing function f3, received parameters: $*. sleeping $1 seconds..."
-#    sleep "$1"
-#}
-
-#function usage() {
-#    echo "usage: bash_template -a -b value [-q othervalue]
-#          options surrounded by brackets [] are optional, others are required"
-#}
-
 function print_start() {
     bold="\033[1m"
     normal="\033[0m"
@@ -84,43 +44,29 @@ function print_start() {
     echo -e $normal${line:0:index-1} $link ${line:0:index-1}"\n"
 }
 
-function get_feed() {
+function download_feed() {
     curl -s -o "$feed_path" "http://www.tatw.co.uk/podcast.xml"
 }
 
 function play() {
-    echo "Starting mpg123 with controls. Press 'h' for help."
-#mpg123 -qC "$1"
+    echo -e "Playing the $number_of_episodes lastest episodes.\nPress 'h' for controls."
+    mpg123 -qC $1
 }
 
 function play_last_episode() {
-    episode_url=$(tail -r "$1" | grep -m 1 enclosure | grep -o "http://[a-zA-Z0-9.\/_]*.mp3") 
-    play "$episode_url"
+    episode_urls=$(tail -r "$1" | grep -m $number_of_episodes enclosure | grep -o "http://[a-zA-Z0-9.\/_]*.mp3")
+    episode_urls=$(sed 's/\n/ /g' <<< $episode_urls)
+    play "$episode_urls"
 }
 
-
-
 function cleanup() {
-    echo "--> executing cleanup function.."
-
     # remove temporary work dir
     if [[ -d "$tmpdir" ]]
     then
-        echo "    removing temporary work dir $tmpdir"
         # cd into /tmp first, just in case $tmpdir has been set to any path
         # outside of /tmp. Also, chaining the commands so that if cd /tmp
         # fails, rm -rf will not get executed
         cd /tmp && rm -rf $(basename "$tmpdir") 
-    fi
-
-    # kill any running background jobs
-    local background_jobs=$(jobs -pr)
-    if [[ "$background_jobs" ]]
-    then
-        echo "    killing running background processes"
-        # unquoted on purpose, needs to expand to a list of pid's
-        kill $background_jobs
-        wait
     fi
 }
 
@@ -135,73 +81,10 @@ hash curl 2>&- || ( echo >&2 "ERROR: curl not installed, exiting.." && exit 1 )
 # -- temporary work dir
 mkdir "$tmpdir" && cd "$tmpdir"
 
-# -- command line options
-# getopts is a POSIX standard way of handling command line arguments. One
-# downside of using it is that it can't handle long options.
-#while getopts "ab:q:" opt
-#do
-#    case $opt in
-#        a) echo "$opt option received"; a=true ;;
-#        b) echo "$opt option received, with argument $OPTARG"; b="$OPTARG";;
-#        q) echo "$opt option received, with argument $OPTARG" ;;
-#        :) echo "Missing required option: -$OPTARG" >&2 ;;
-#        \?) echo "Invalid option: -$OPTARG" >&2 ;;
-#    esac
-#done
-
-# -- test for any missing required options
-#if [[ -z "$a" || -z "$b" ]]
-#then
-#    echo "ERROR: missing required options.."
-#    usage
-#    exit 1
-#fi
-
 # -- main ----------------------------------------------------------------------
-# -- executing tasks in parallel
-#echo "--> executing five jobs in parallel"
-#for i in {1..5}
-#do
-#    # & = send command to background, and continue
-#    f3 5 &
-#done
-#
-## waits until all backgrounded jobs are finished
-#wait
-#echo "--> all background jobs finished"
-#
-## -- calling functions
-#if f1_stdout_and_stderr=$(f1 2>&1)
-#then
-#    echo "--> function f1 succeeded and produced the following output (stdout and stderr): "
-#    echo "$f1_stdout_and_stderr"
-#fi
-#
-#if ! f2_stdout_and_stderr=$(f2 2>&1)
-#then
-#    echo "--> function f2 failed and produced the following output (stdout and stderr): "
-#    echo "$f2_stdout_and_stderr"
-#fi
-#
-#f1_stderr_only=$(f1 2>&1 1> /dev/null)
-#f1_stdout_only=$(f1 2> /dev/null)
-#
-#echo "--> function f1 executed and produced the following output to stderr:"
-#echo "$f1_stderr_only"
-#echo "--> function f1 executed and produced the following output to stdout:"
-#echo "$f1_stdout_only"
-#
-## Shorthand form to make sure function executed successfully (exit status 0)
-## and produced a result (to stdout). Any output to stderr inside function is
-## unhandled and will be printed to terminal.
-#echo "--> shorthand form execution of f1"
-#result=$(f1) && [[ "$result" ]] || exit 1
-#echo "--> function f1 succeeded and produced the following output (stdout): "
-#echo "$result"
-
 
 print_start
-get_feed
+download_feed
 if [ -e "$feed_path" ]  && [ -s "$feed_path" ]
 then
     play_last_episode "$feed_path"
