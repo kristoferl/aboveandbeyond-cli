@@ -49,7 +49,7 @@ function download_feed() {
 }
 
 function play() {
-    echo -e "Playing the $number_of_episodes lastest episodes.\nPress 'h' for controls."
+    echo -e "Playing the $number_of_episodes latest episodes.\nPress 'h' for controls."
     mpg123 -qC $1
 }
 
