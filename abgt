@@ -73,13 +73,24 @@ feed_path="$tmpdir/feed.xml"
 #          options surrounded by brackets [] are optional, others are required"
 #}
 
+function print_start() {
+    bold="\033[1m"
+    normal="\033[0m"
+    abgt="Group Therapy with Above & Beyond"
+    link="aboveandbeyond.nu"
+    echo -e "$bold$abgt"
+    line=$(sed 's/./-/g' <<< $abgt)
+    index=$(((${#abgt}-${#link})/2))
+    echo -e $normal${line:0:index-1} $link ${line:0:index-1}"\n"
+}
+
 function get_feed() {
     curl -s -o "$feed_path" "http://www.tatw.co.uk/podcast.xml"
 }
 
 function play() {
     echo "Starting mpg123 with controls. Press 'h' for help."
-    mpg123 -qC "$1"
+#mpg123 -qC "$1"
 }
 
 function play_last_episode() {
@@ -117,6 +128,9 @@ function cleanup() {
 # -- error handling
 # this trap is run on any exit, signalled or not
 trap cleanup EXIT
+
+hash mpg123 2>&- || ( echo >&2 "ERROR: mpg123 not installed, exiting.." && exit 1 )
+hash curl 2>&- || ( echo >&2 "ERROR: curl not installed, exiting.." && exit 1 )
 
 # -- temporary work dir
 mkdir "$tmpdir" && cd "$tmpdir"
@@ -185,6 +199,8 @@ mkdir "$tmpdir" && cd "$tmpdir"
 #echo "--> function f1 succeeded and produced the following output (stdout): "
 #echo "$result"
 
+
+print_start
 get_feed
 if [ -e "$feed_path" ]  && [ -s "$feed_path" ]
 then
@@ -192,4 +208,4 @@ then
 else
     echo "ERROR: Failed to get feed."
 fi
-
+ 
