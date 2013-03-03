@@ -45,7 +45,7 @@ function print_start() {
 }
 
 function download_feed() {
-    curl -s -o "$feed_path" "http://www.tatw.co.uk/podcast.xml"
+    $(curl -f -s -o "$feed_path" "http://www.tatw.co.uk/podcast.xml" || true)
 }
 
 function play() {
@@ -53,10 +53,15 @@ function play() {
     mpg123 -qC $1
 }
 
-function play_last_episode() {
-    episode_urls=$(tail -r "$1" | grep -m $number_of_episodes enclosure | grep -o "http://[a-zA-Z0-9.\/_]*.mp3")
+function play_latest_episodes() {
+    episode_urls=$(tail -r "$1" | grep -m $number_of_episodes enclosure | grep -o "http://[a-zA-Z0-9.\/_]*.mp3" || true)
     episode_urls=$(sed 's/\n/ /g' <<< $episode_urls)
-    play "$episode_urls"
+    if [ -n "$episode_urls" ]
+    then
+        play "$episode_urls"
+    else
+        echo "Error: No episodes found."
+    fi
 }
 
 function cleanup() {
@@ -87,7 +92,7 @@ print_start
 download_feed
 if [ -e "$feed_path" ]  && [ -s "$feed_path" ]
 then
-    play_last_episode "$feed_path"
+    play_latest_episodes "$feed_path"
 else
     echo "ERROR: Failed to get feed."
 fi
