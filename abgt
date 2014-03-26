@@ -45,7 +45,7 @@ function print_start() {
 }
 
 function download_feed() {
-    $(curl -f -s -o "$feed_path" "http://www.tatw.co.uk/podcast.xml" || true)
+    $(curl -f -s -o "$feed_path" "http://static.aboveandbeyond.nu/grouptherapy/podcast.xml" || true)
 }
 
 function play() {
