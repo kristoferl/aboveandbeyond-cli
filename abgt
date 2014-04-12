@@ -18,7 +18,7 @@
 
 set -o errexit
 # Exit immediately if a simple command (see SHELL GRAMMAR) exits with a
-# non-zero status. 
+# non-zero status.
 
 set -o nounset
 # Treat unset variables as an error when performing parameter expansion.  If
@@ -26,8 +26,6 @@ set -o nounset
 # message, and, if not interactive, exits with a non-zero status.
 
 # -- global variables ----------------------------------------------------------
-# use lower case variable names, to avoid conflicts with any environment
-# variables (which are upper case by convention)
 tmpdir="/tmp/$RANDOM-$RANDOM-$RANDOM"
 feed_path="$tmpdir/feed.xml"
 number_of_episodes=20
@@ -71,7 +69,7 @@ function cleanup() {
         # cd into /tmp first, just in case $tmpdir has been set to any path
         # outside of /tmp. Also, chaining the commands so that if cd /tmp
         # fails, rm -rf will not get executed
-        cd /tmp && rm -rf $(basename "$tmpdir") 
+        cd /tmp && rm -rf $(basename "$tmpdir")
     fi
 }
 
@@ -87,7 +85,6 @@ hash curl 2>&- || ( echo >&2 "ERROR: curl not installed, exiting.." && exit 1 )
 mkdir "$tmpdir" && cd "$tmpdir"
 
 # -- main ----------------------------------------------------------------------
-
 print_start
 download_feed
 if [ -e "$feed_path" ]  && [ -s "$feed_path" ]
@@ -96,4 +93,3 @@ then
 else
     echo "ERROR: Failed to get feed."
 fi
- 
