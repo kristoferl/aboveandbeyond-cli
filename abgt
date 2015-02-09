@@ -52,8 +52,8 @@ function play() {
 }
 
 function play_latest_episodes() {
-    episode_urls=$(tail -r "$1" | grep enclosure | grep -o "http://[a-zA-Z0-9.\/_]*.mp3" | head -n $number_of_episodes || true)
-    episode_urls=$(sed 's/\n/ /g' <<< $episode_urls)
+    episode_urls=$(grep enclosure $1| grep -o "http://[a-zA-Z0-9.\/_]*.mp3" | head -n $number_of_episodes || true)
+    episode_urls=$(sed 's/\\n/ /g' <<< $episode_urls)
     if [ -n "$episode_urls" ]
     then
         play "$episode_urls"
