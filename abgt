@@ -61,7 +61,6 @@ function play() {
         if [[ $randomize = true ]]
         then
           random_episode=$(echo $RANDOM % $number_of_episodes + 1 | bc)
-          echo -e "Random episode $random_episode"
           url=$(echo -e $1 | awk -v rand=$random_episode -F ' ' '{print $rand}')
         fi
         echo "Downloading episode: $url"
