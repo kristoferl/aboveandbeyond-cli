@@ -28,6 +28,7 @@ set -o nounset
 # -- global variables ----------------------------------------------------------
 tmpdir="/tmp/$RANDOM-$RANDOM-$RANDOM"
 feed_path="$tmpdir/feed.xml"
+tmp_music_file="$tmpdir/musicfile"
 number_of_episodes=20
 
 # -- functions -----------------------------------------------------------------
@@ -47,12 +48,18 @@ function download_feed() {
 }
 
 function play() {
-    echo -e "Playing the $number_of_episodes latest episodes.\nPress 'h' for controls."
-    mpg123 -qC $1
+    echo -e "Playing the $number_of_episodes latest episodes."
+    for url in $1
+    do
+        echo "Downloading episode: $url"
+        curl --location -# $url > $tmp_music_file
+        echo "Playing episode"
+        afplay -q 1 $tmp_music_file
+    done
 }
 
 function play_latest_episodes() {
-    episode_urls=$(grep enclosure $1| grep -o "http://[a-zA-Z0-9.\/_-]*.mp3" | head -n $number_of_episodes || true)
+    episode_urls=$(grep enclosure $1| grep -o "http://[a-zA-Z0-9.\/_-]*.m[p4][3a]" | head -n $number_of_episodes || true)
     episode_urls=$(sed 's/\\n/ /g' <<< $episode_urls)
     if [ -n "$episode_urls" ]
     then
@@ -78,7 +85,7 @@ function cleanup() {
 # this trap is run on any exit, signalled or not
 trap cleanup EXIT
 
-hash mpg123 2>&- || ( echo >&2 "ERROR: mpg123 not installed, exiting.." && exit 1 )
+hash afplay 2>&- || ( echo >&2 "ERROR: afplay not installed, exiting.." && exit 1 )
 hash curl 2>&- || ( echo >&2 "ERROR: curl not installed, exiting.." && exit 1 )
 
 # -- temporary work dir
