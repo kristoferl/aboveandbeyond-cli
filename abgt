@@ -30,6 +30,8 @@ tmpdir="/tmp/$RANDOM-$RANDOM-$RANDOM"
 feed_path="$tmpdir/feed.xml"
 tmp_music_file="$tmpdir/musicfile"
 number_of_episodes=20
+randomize=false
+show_help=false
 
 # -- functions -----------------------------------------------------------------
 function print_start() {
@@ -48,9 +50,20 @@ function download_feed() {
 }
 
 function play() {
-    echo -e "Playing the $number_of_episodes latest episodes."
+    if [[ $randomize = true ]]
+    then
+      echo -e "Playing $number_of_episodes latest episodes randomly."
+    else
+      echo -e "Playing $number_of_episodes latest episodes."
+    fi
     for url in $1
     do
+        if [[ $randomize = true ]]
+        then
+          random_episode=$(echo $RANDOM % $number_of_episodes + 1 | bc)
+          echo -e "Random episode $random_episode"
+          url=$(echo -e $1 | awk -v rand=$random_episode -F ' ' '{print $rand}')
+        fi
         echo "Downloading episode: $url"
         curl --location -# $url > $tmp_music_file
         echo "Playing episode"
@@ -67,6 +80,11 @@ function play_latest_episodes() {
     else
         echo "Error: No episodes found."
     fi
+}
+
+function usage() {
+    echo "usage: abgt [-r]
+         -r is optional and if this option is given, the episodes are randommized."
 }
 
 function cleanup() {
@@ -90,6 +108,23 @@ hash curl 2>&- || ( echo >&2 "ERROR: curl not installed, exiting.." && exit 1 )
 
 # -- temporary work dir
 mkdir "$tmpdir" && cd "$tmpdir"
+
+# -- command line options
+# getopts is a POSIX standard way of handling command line arguments. One
+# downside of using it is that it can't handle long options.
+while getopts "r" opt
+do
+    case $opt in
+        r) randomize=true ;;
+        ?) show_help=true ;;
+    esac
+done
+
+if [[ $show_help = true ]]
+then
+    usage
+    exit 1
+fi
 
 # -- main ----------------------------------------------------------------------
 print_start
