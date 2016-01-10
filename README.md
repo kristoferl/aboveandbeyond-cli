@@ -4,7 +4,7 @@ aboveandbeyond-cli
 Command line interface for the episodes in the rss feed for aboveandbeyond.nu
 
 #####Requires:
-bash, wget, mpg123
+bash, curl, afplay
 
 #####Usage:
     ./abgt - Plays the latest episodes

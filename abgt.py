@@ -54,8 +54,11 @@ def chooseEpisode():
 
 def playEpisode(episode):
   print "Playing: {0}".format(episode['title'])
-  print "Press 'h' for controls"
-  subprocess.call(["mpg123", "-qC", episode['url']])
+  print "afplay -q 1 " + episode['url']
+  print "curl " + episode['url'] + " -o /tmp/abgt"
+  subprocess.call(["curl", "--location", "-#", episode['url'], ">", "/tmp/abgt"])
+
+  subprocess.call(["afplay", "-q 1", "/tmp/abgt"])
   chooseEpisode()
 
 downloadFeed()
