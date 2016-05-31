@@ -29,7 +29,8 @@ set -o nounset
 tmpdir="/tmp/$RANDOM-$RANDOM-$RANDOM"
 feed_path="$tmpdir/feed.xml"
 tmp_music_file="$tmpdir/musicfile"
-number_of_episodes=20
+max_number_of_episodes=20
+number_of_episodes=-1
 randomize=false
 show_help=false
 
@@ -71,7 +72,8 @@ function play() {
 }
 
 function play_latest_episodes() {
-    episode_urls=$(grep enclosure $1| grep -o "http://[a-zA-Z0-9.\/_-]*.m[p4][3a]" | head -n $number_of_episodes || true)
+    episode_urls=$(grep enclosure $1| grep -o "http://[a-zA-Z0-9.\/_-]*.m[p4][3a]" | head -n $max_number_of_episodes || true)
+    number_of_episodes=$(echo "$episode_urls" | wc -l | xargs)
     episode_urls=$(sed 's/\\n/ /g' <<< $episode_urls)
     if [ -n "$episode_urls" ]
     then
