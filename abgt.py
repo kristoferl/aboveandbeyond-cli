@@ -5,7 +5,6 @@ import xml.etree.ElementTree as ET
 import re
 import subprocess
 import urllib2
-from subprocess import Popen, PIPE, STDOUT
 
 print "    _   _                   __       ___                       _ "
 print "   /_\ | |__  _____ _____  / _|___  | _ ) ___ _  _ ___ _ _  __| |"
@@ -22,45 +21,50 @@ whitespacePattern = re.compile(r'\s+')
 episodes = []
 items = []
 
-def downloadFeed():
-  global items
-  print "Downloading feed ..."
-  feed = urllib2.urlopen(FEED_URL)
-  feedData = feed.read()
-  root = ET.fromstring(feedData)
-  items = root.iter('item')
 
-def extractEpisodes():
-  for item in items:
-    episode = {}
-    for child in item:
-      if child.tag == SUBTITLE_TAG:
-        # Some subtitles contains a newline character and multiple whitespace characters
-        episode['title'] = sentence = re.sub(whitespacePattern, ' ', child.text)
-      if child.tag == ENCLOSURE_TAG:
-        episode['url'] = child.attrib[MUSIC_URL_ATTR]
-    episodes.append(episode)
+def download_feed():
+    global items
+    print "Downloading feed ..."
+    feed = urllib2.urlopen(FEED_URL)
+    feed_data = feed.read()
+    root = ET.fromstring(feed_data)
+    items = root.iter('item')
 
-def showEpisodes():
-  global episodes
-  i = 0;
-  for episode in episodes:
-    print '{0:3d} - {1}'.format(i, episode['title'])
-    i = i+1;
 
-def chooseEpisode():
-  episodeNumber = raw_input("Choose episode: ")
-  episode = episodes[int(episodeNumber)]
-  playEpisode(episode)
+def extract_episodes():
+    for item in items:
+        episode = {}
+        for child in item:
+            if child.tag == SUBTITLE_TAG:
+                # Some subtitles contains a newline character and multiple whitespace characters
+                episode['title'] = re.sub(whitespacePattern, ' ', child.text)
+            if child.tag == ENCLOSURE_TAG:
+                episode['url'] = child.attrib[MUSIC_URL_ATTR]
+        episodes.append(episode)
 
-def playEpisode(episode):
-  print "Downloading: {0}".format(episode['title'])
-  subprocess.call(["curl", "--location", "-#", "-o", EPISODE_TMP_LOCATION, episode['url']])
-  print "Playing: {0}".format(episode['title'])
-  subprocess.call(["afplay", "-q", "1", EPISODE_TMP_LOCATION])
-  chooseEpisode()
 
-downloadFeed()
-extractEpisodes()
-showEpisodes()
-chooseEpisode()
+def show_episodes():
+    global episodes
+    i = 0
+    for episode in episodes:
+        print '{0:3d} - {1}'.format(i, episode['title'])
+        i += 1
+
+
+def choose_episode():
+    episode_number = raw_input("Choose episode: ")
+    episode = episodes[int(episode_number)]
+    play_episode(episode)
+
+
+def play_episode(episode):
+    print "Downloading: {0}".format(episode['title'])
+    subprocess.call(["curl", "--location", "-#", "-o", EPISODE_TMP_LOCATION, episode['url']])
+    print "Playing: {0}".format(episode['title'])
+    subprocess.call(["afplay", "-q", "1", EPISODE_TMP_LOCATION])
+    choose_episode()
+
+download_feed()
+extract_episodes()
+show_episodes()
+choose_episode()
