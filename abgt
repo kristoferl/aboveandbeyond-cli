@@ -29,6 +29,7 @@ set -o nounset
 tmpdir="/tmp/$RANDOM-$RANDOM-$RANDOM"
 feed_path="$tmpdir/feed.xml"
 tmp_music_file="$tmpdir/musicfile"
+re_encoded_music_file="$tmpdir/reencodedmusicfile.mp3"
 max_number_of_episodes=20
 number_of_episodes=-1
 randomize=false
@@ -66,8 +67,19 @@ function play() {
         fi
         echo "Downloading episode: $url"
         curl --location -# $url > $tmp_music_file
-        echo "Playing episode"
-        afplay -q 1 $tmp_music_file
+
+        # If the file isn't a mp3 file, re-encode it
+        music_file_location=""
+        if [[ $(file -I $tmp_music_file) == *"audio/mpeg"* ]]
+        then
+          music_file_location=$tmp_music_file
+        else
+          echo "Re-encoding file"
+          ffmpeg -i $tmp_music_file -acodec libmp3lame  -vsync 2 -v 24 -ab 320k -stats -y $re_encoded_music_file
+          music_file_location=$re_encoded_music_file
+        fi
+        echo "Playing episode. Press 'h' for controls."
+        mpg123 -qC $music_file_location
     done
 }
 
@@ -105,7 +117,8 @@ function cleanup() {
 trap cleanup EXIT
 
 hash afplay 2>&- || ( echo >&2 "ERROR: afplay not installed, exiting.." && exit 1 )
-hash curl 2>&- || ( echo >&2 "ERROR: curl not installed, exiting.." && exit 1 )
+hash mpg123 2>&- || ( echo >&2 "ERROR: mpg123 not installed, exiting.." && exit 1 )
+hash ffmpeg 2>&- || ( echo >&2 "ERROR: mpg123 not installed, exiting.." && exit 1 )
 
 # -- temporary work dir
 mkdir "$tmpdir" && cd "$tmpdir"
