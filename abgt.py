@@ -16,7 +16,6 @@ FEED_URL = "http://static.aboveandbeyond.nu/grouptherapy/podcast.xml"
 SUBTITLE_TAG = "{http://www.itunes.com/dtds/podcast-1.0.dtd}subtitle"
 ENCLOSURE_TAG = "enclosure"
 MUSIC_URL_ATTR = "url"
-EPISODE_TMP_LOCATION = "/tmp/abgt"
 whitespacePattern = re.compile(r'\s+')
 episodes = []
 items = []
@@ -58,10 +57,8 @@ def choose_episode():
 
 
 def play_episode(episode):
-    print "Downloading: {0}".format(episode['title'])
-    subprocess.call(["curl", "--location", "-#", "-o", EPISODE_TMP_LOCATION, episode['url']])
     print "Playing: {0}".format(episode['title'])
-    subprocess.call(["afplay", "-q", "1", EPISODE_TMP_LOCATION])
+    subprocess.call(["mplayer", "-vo", "null", "-really-quiet", episode['url']])
     choose_episode()
 
 download_feed()

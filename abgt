@@ -26,14 +26,11 @@ set -o nounset
 # message, and, if not interactive, exits with a non-zero status.
 
 # -- global variables ----------------------------------------------------------
-tmpdir="/tmp/$RANDOM-$RANDOM-$RANDOM"
-feed_path="$tmpdir/feed.xml"
-tmp_music_file="$tmpdir/musicfile"
-re_encoded_music_file="$tmpdir/reencodedmusicfile.mp3"
 max_number_of_episodes=20
 number_of_episodes=-1
 randomize=false
 show_help=false
+feed=""
 
 # -- functions -----------------------------------------------------------------
 function print_start() {
@@ -48,7 +45,7 @@ function print_start() {
 }
 
 function download_feed() {
-    $(curl -f -s -o "$feed_path" "http://static.aboveandbeyond.nu/grouptherapy/podcast.xml" || true)
+    feed=$(curl -f -s "http://static.aboveandbeyond.nu/grouptherapy/podcast.xml" || true)
 }
 
 function play() {
@@ -65,26 +62,13 @@ function play() {
           random_episode=$(echo $RANDOM % $number_of_episodes + 1 | bc)
           url=$(echo -e $1 | awk -v rand=$random_episode -F ' ' '{print $rand}')
         fi
-        echo "Downloading episode: $url"
-        curl --location -# $url > $tmp_music_file
-
-        # If the file isn't a mp3 file, re-encode it
-        music_file_location=""
-        if [[ $(file -I $tmp_music_file) == *"audio/mpeg"* ]]
-        then
-          music_file_location=$tmp_music_file
-        else
-          echo "Re-encoding file"
-          ffmpeg -i $tmp_music_file -acodec libmp3lame  -vsync 2 -v 24 -ab 320k -stats -y $re_encoded_music_file
-          music_file_location=$re_encoded_music_file
-        fi
-        echo "Playing episode. Press 'h' for controls."
-        mpg123 -qC $music_file_location
+        echo "Playing episode. Press 'space' to pause/play."
+        mplayer -vo null -really-quiet $url
     done
 }
 
-function play_latest_episodes() {
-    episode_urls=$(grep enclosure $1| grep -o "http://[a-zA-Z0-9.\/_-]*.m[p4][3a]" | head -n $max_number_of_episodes || true)
+function extract_episodes_to_play() {
+    episode_urls=$(echo $feed | grep enclosure | grep -o "http://[a-zA-Z0-9.\/_-]*.m[p4][3a]" | head -n $max_number_of_episodes || true)
     number_of_episodes=$(echo "$episode_urls" | wc -l | xargs)
     episode_urls=$(sed 's/\\n/ /g' <<< $episode_urls)
     if [ -n "$episode_urls" ]
@@ -97,31 +81,13 @@ function play_latest_episodes() {
 
 function usage() {
     echo "usage: abgt [-r]
-         -r is optional and if this option is given, the episodes are randommized."
-}
-
-function cleanup() {
-    # remove temporary work dir
-    if [[ -d "$tmpdir" ]]
-    then
-        # cd into /tmp first, just in case $tmpdir has been set to any path
-        # outside of /tmp. Also, chaining the commands so that if cd /tmp
-        # fails, rm -rf will not get executed
-        cd /tmp && rm -rf $(basename "$tmpdir")
-    fi
+         -r is optional and if this option is given, the episodes are randomized."
 }
 
 # -- initialize ----------------------------------------------------------------
-# -- error handling
-# this trap is run on any exit, signalled or not
-trap cleanup EXIT
 
-hash afplay 2>&- || ( echo >&2 "ERROR: afplay not installed, exiting.." && exit 1 )
-hash mpg123 2>&- || ( echo >&2 "ERROR: mpg123 not installed, exiting.." && exit 1 )
-hash ffmpeg 2>&- || ( echo >&2 "ERROR: mpg123 not installed, exiting.." && exit 1 )
+hash mplayer 2>&- || ( echo >&2 "ERROR: mplayer not installed, exiting.." && exit 1 )
 
-# -- temporary work dir
-mkdir "$tmpdir" && cd "$tmpdir"
 
 # -- command line options
 # getopts is a POSIX standard way of handling command line arguments. One
@@ -143,9 +109,9 @@ fi
 # -- main ----------------------------------------------------------------------
 print_start
 download_feed
-if [ -e "$feed_path" ]  && [ -s "$feed_path" ]
+if [ -n "$feed" ]
 then
-    play_latest_episodes "$feed_path"
+    extract_episodes_to_play
 else
     echo "ERROR: Failed to get feed."
 fi

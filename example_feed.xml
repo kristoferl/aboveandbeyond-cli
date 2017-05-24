@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+    <channel>
+        <title>Above &amp; Beyond: Group Therapy</title>
+        <link>http://static.aboveandbeyond.nu/grouptherapy/podcast.xml</link>
+        <description>Group Therapy is the weekly radio show from Above &amp; Beyond also known as ABGT</description>
+        <language>en</language>
+        <copyright>Above &amp; Beyond</copyright>
+        <lastBuildDate>Thu, 18 May 2017 12:08:32 +0000</lastBuildDate>
+        <category>Music</category>
+        <atom:link rel="self" href="http://static.aboveandbeyond.nu/grouptherapy/podcast.xml"
+                   type="application/rss+xml"/>
+        <itunes:author>Above &amp; Beyond</itunes:author>
+        <itunes:summary>Group Therapy is the weekly radio show from Above &amp; Beyond also known as ABGT
+        </itunes:summary>
+        <itunes:owner>
+            <itunes:name>Above &amp; Beyond</itunes:name>
+            <itunes:email>contact@aboveandbeyond.nu</itunes:email>
+        </itunes:owner>
+        <itunes:image href="http://static.aboveandbeyond.nu/assets/logos/Group_Therapy_Podcast_600x600.jpg"/>
+        <itunes:link rel="image" type="video/jpeg"
+                     href="http://static.aboveandbeyond.nu/assets/logos/Group_Therapy_Podcast_600x600.jpg">Above &amp;
+            Beyond: Group Therapy
+        </itunes:link>
+        <itunes:category text="Music"/>
+        <itunes:keyword>anjunabeats, above and beyond, oceanlab, anjuna</itunes:keyword>
+        <itunes:explicit>no</itunes:explicit>
+        <item>
+            <title>#232 Group Therapy Radio with Above &amp; Beyond</title>
+            <link>http://www.aboveandbeyond.nu/radio/abgt232</link>
+            <description>Episode #232 / Max Freegrant Guest Mix</description>
+            <author>Above &amp; Beyond</author>
+            <enclosure url="http://traffic.libsyn.com/anjunabeats/ABGT232_LiveShow190517.m4a" length="115205480"
+                       type="audio/mpeg"/>
+            <guid>abgt232</guid>
+            <pubDate>Fri, 19 May 2017 08:10:00 +0000</pubDate>
+            <itunes:author>Above &amp; Beyond</itunes:author>
+            <itunes:subtitle>Episode #232 / Max Freegrant Guest Mix</itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>02:00:00</itunes:duration>
+        </item>
+        <item>
+            <title>#231 Group Therapy Radio with Above &amp; Beyond</title>
+            <link>http://www.aboveandbeyond.nu/radio/abgt231</link>
+            <description>Episode #231 / Sunny Lax Guest Mix</description>
+            <author>Above &amp; Beyond</author>
+            <enclosure url="http://traffic.libsyn.com/anjunabeats/ABGT231_LiveShow120517.m4a" length="115205480"
+                       type="audio/mpeg"/>
+            <guid>abgt231</guid>
+            <pubDate>Fri, 12 May 2017 08:10:00 +0000</pubDate>
+            <itunes:author>Above &amp; Beyond</itunes:author>
+            <itunes:subtitle>Episode #231 / Sunny Lax Guest Mix</itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>02:00:00</itunes:duration>
+        </item>
+        <item>
+            <title>#230 Group Therapy Radio with Above &amp; Beyond</title>
+            <link>http://www.aboveandbeyond.nu/radio/abgt230</link>
+            <description>Episode #230 / Kyson Guest Mix</description>
+            <author>Above &amp; Beyond</author>
+            <enclosure url="http://traffic.libsyn.com/anjunabeats/ABGT230_LiveShow050517.m4a" length="115205480"
+                       type="audio/mpeg"/>
+            <guid>abgt230</guid>
+            <pubDate>Fri, 05 May 2017 08:10:00 +0000</pubDate>
+            <itunes:author>Above &amp; Beyond</itunes:author>
+            <itunes:subtitle>Episode #230 / Kyson Guest Mix</itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>02:00:00</itunes:duration>
+        </item>
+        <item>
+            <title>#229 Group Therapy Radio with Above &amp; Beyond</title>
+            <link>http://www.aboveandbeyond.nu/radio/abgt229</link>
+            <description>Episode #229 / Oliver Smith Guest Mix</description>
+            <author>Above &amp; Beyond</author>
+            <enclosure url="http://traffic.libsyn.com/anjunabeats/ABGT229_LiveShow280417.m4a" length="115205480"
+                       type="audio/mpeg"/>
+            <guid>abgt229</guid>
+            <pubDate>Fri, 28 Apr 2017 08:10:00 +0000</pubDate>
+            <itunes:author>Above &amp; Beyond</itunes:author>
+            <itunes:subtitle>Episode #229 / Oliver Smith Guest Mix</itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>02:00:00</itunes:duration>
+        </item>
+        <item>
+            <title>#228 Group Therapy Radio with Above &amp; Beyond</title>
+            <link>http://www.aboveandbeyond.nu/radio/abgt228</link>
+            <description>Episode #228 / Talamanca Guest Mix</description>
+            <author>Above &amp; Beyond</author>
+            <enclosure url="http://traffic.libsyn.com/anjunabeats/ABGT228_LiveShow210417.m4a" length="115205480"
+                       type="audio/mpeg"/>
+            <guid>abgt228</guid>
+            <pubDate>Fri, 21 Apr 2017 08:10:00 +0000</pubDate>
+            <itunes:author>Above &amp; Beyond</itunes:author>
+            <itunes:subtitle>Episode #228 / Talamanca Guest Mix</itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>02:00:00</itunes:duration>
+        </item>
+        <item>
+            <title>#227 Group Therapy Radio with Above &amp; Beyond</title>
+            <link>http://www.aboveandbeyond.nu/radio/abgt227</link>
+            <description>Episode #227 / Filterheadz Guest Mix</description>
+            <author>Above &amp; Beyond</author>
+            <enclosure url="http://traffic.libsyn.com/anjunabeats/ABGT227_LiveShow140417.m4a" length="115205480"
+                       type="audio/mpeg"/>
+            <guid>abgt227</guid>
+            <pubDate>Fri, 14 Apr 2017 08:10:00 +0000</pubDate>
+            <itunes:author>Above &amp; Beyond</itunes:author>
+            <itunes:subtitle>Episode #227 / Filterheadz Guest Mix</itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>02:00:00</itunes:duration>
+        </item>
+        <item>
+            <title>#226 Group Therapy Radio with Above &amp; Beyond</title>
+            <link>http://www.aboveandbeyond.nu/radio/abgt226</link>
+            <description>Episode #226 / Kidnap Kid Guest Mix</description>
+            <author>Above &amp; Beyond</author>
+            <enclosure url="http://traffic.libsyn.com/anjunabeats/ABGT226_LiveShow070417.m4a" length="115205480"
+                       type="audio/mpeg"/>
+            <guid>abgt226</guid>
+            <pubDate>Fri, 07 Apr 2017 08:10:00 +0000</pubDate>
+            <itunes:author>Above &amp; Beyond</itunes:author>
+            <itunes:subtitle>Episode #226 / Kidnap Kid Guest Mix</itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>02:00:00</itunes:duration>
+        </item>
+        <item>
+            <title>#225 Group Therapy Radio with Above &amp; Beyond</title>
+            <link>http://www.aboveandbeyond.nu/radio/abgt225</link>
+            <description>Episode #225 / Adrian Alexander Guest Mix</description>
+            <author>Above &amp; Beyond</author>
+            <enclosure url="http://traffic.libsyn.com/anjunabeats/ABGT225_LiveShow310316.m4a" length="115205480"
+                       type="audio/mpeg"/>
+            <guid>abgt225</guid>
+            <pubDate>Fri, 31 Mar 2017 08:10:00 +0000</pubDate>
+            <itunes:author>Above &amp; Beyond</itunes:author>
+            <itunes:subtitle>Episode #225 / Adrian Alexander Guest Mix</itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>02:00:00</itunes:duration>
+        </item>
+        <item>
+            <title>#200 Group Therapy Radio with Above &amp; Beyond / Jason Ross</title>
+            <link>http://www.aboveandbeyond.nu/radio/abgt200j</link>
+            <description>Episode #200 / Jason Ross Live at Ziggo Dome, Amsterdam</description>
+            <author>Above &amp; Beyond</author>
+            <enclosure url="http://traffic.libsyn.com/anjunabeatsworldwide/ABGT200-JR_320.mp3" length="115205480"
+                       type="audio/mpeg"/>
+            <guid>abgt200j</guid>
+            <pubDate>Mon, 24 Oct 2016 04:00:00 +0000</pubDate>
+            <itunes:author>Above &amp; Beyond</itunes:author>
+            <itunes:subtitle>Episode #200 / Jason Ross Live at Ziggo Dome, Amsterdam</itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>01:00:00</itunes:duration>
+        </item>
+        <item>
+            <title>#200 Group Therapy Radio with Above &amp; Beyond / Andrew Bayer / ilan Bluestone</title>
+            <link>http://www.aboveandbeyond.nu/radio/abgt200bb</link>
+            <description>Episode #200 / Andrew Bayer B2B ilan Bluestone Live at Ziggo Dome, Amsterdam</description>
+            <author>Above &amp; Beyond</author>
+            <enclosure url="http://traffic.libsyn.com/anjunadeep/ABGT200-BB_320.mp3" length="115205480"
+                       type="audio/mpeg"/>
+            <guid>abgt200bb</guid>
+            <pubDate>Mon, 24 Oct 2016 08:45:00 +0000</pubDate>
+            <itunes:author>Above &amp; Beyond</itunes:author>
+            <itunes:subtitle>Episode #200 / Andrew Bayer B2B ilan Bluestone Live at Ziggo Dome, Amsterdam
+            </itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>01:00:00</itunes:duration>
+        </item>
+        <item>
+            <title>#200 Group Therapy Radio with Above &amp; Beyond / Grum</title>
+            <link>http://www.aboveandbeyond.nu/radio/abgt200g</link>
+            <description>Episode #200 / Grum Live at Ziggo Dome, Amsterdam</description>
+            <author>Above &amp; Beyond</author>
+            <enclosure url="http://traffic.libsyn.com/anjunabeats/ABGT200-Grum_320.mp3" length="115205480"
+                       type="audio/mpeg"/>
+            <guid>abgt200g</guid>
+            <pubDate>Mon, 24 Oct 2016 08:30:00 +0000</pubDate>
+            <itunes:author>Above &amp; Beyond</itunes:author>
+            <itunes:subtitle>Episode #200 / Grum Live at Ziggo Dome, Amsterdam</itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>01:00:00</itunes:duration>
+        </item>
+        <item>
+            <title>#200 Group Therapy Radio with Above &amp; Beyond / Yotto</title>
+            <link>http://www.aboveandbeyond.nu/radio/abgt200y</link>
+            <description>Episode #200 / Yotto Live at Ziggo Dome, Amsterdam</description>
+            <author>Above &amp; Beyond</author>
+            <enclosure url="http://traffic.libsyn.com/anjunabeats/ABGT200-Yotto_320.mp3" length="115205480"
+                       type="audio/mpeg"/>
+            <guid>abgt200y</guid>
+            <pubDate>Mon, 24 Oct 2016 08:15:00 +0000</pubDate>
+            <itunes:author>Above &amp; Beyond</itunes:author>
+            <itunes:subtitle>Episode #200 / Yotto Live at Ziggo Dome, Amsterdam</itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>01:00:00</itunes:duration>
+        </item>
+        <item>
+            <title>#200 Group Therapy Radio with Above &amp; Beyond / Cubicolor</title>
+            <link>http://www.aboveandbeyond.nu/radio/abgt200c</link>
+            <description>Episode #200 / Cubicolor Live at Ziggo Dome, Amsterdam</description>
+            <author>Above &amp; Beyond</author>
+            <enclosure url="http://traffic.libsyn.com/anjunabeats/ABGT200-Cubicolor_320.mp3" length="115205480"
+                       type="audio/mpeg"/>
+            <guid>abgt200c</guid>
+            <pubDate>Mon, 24 Oct 2016 08:00:00 +0000</pubDate>
+            <itunes:author>Above &amp; Beyond</itunes:author>
+            <itunes:subtitle>Episode #200 / Cubicolor Live at Ziggo Dome, Amsterdam</itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>01:00:00</itunes:duration>
+        </item>
+        <item>
+            <title>#200 Group Therapy Radio with Above &amp; Beyond</title>
+            <link>http://www.aboveandbeyond.nu/radio/abgt200m</link>
+            <description>Episode #200 / Above &amp; Beyond Main Set Live at Ziggo Dome, Amsterdam</description>
+            <author>Above &amp; Beyond</author>
+            <enclosure url="http://traffic.libsyn.com/anjunabeats/ABGT200AboveBeyondMainSet.mp3" length="115205480"
+                       type="audio/mpeg"/>
+            <guid>abgt200m</guid>
+            <pubDate>Mon, 03 Oct 2016 09:00:00 +0000</pubDate>
+            <itunes:author>Above &amp; Beyond</itunes:author>
+            <itunes:subtitle>Episode #200 / Above &amp; Beyond Main Set Live at Ziggo Dome, Amsterdam</itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>02:00:00</itunes:duration>
+        </item>
+        <item>
+            <title>#200 Group Therapy Radio with Above &amp; Beyond / Opening Set</title>
+            <link>http://www.aboveandbeyond.nu/radio/abgt200</link>
+            <description>Episode #200 / Above &amp; Beyond Opening Set Live at Ziggo Dome, Amsterdam</description>
+            <author>Above &amp; Beyond</author>
+            <enclosure url="http://traffic.libsyn.com/anjunadeep/ABGT200_AboveBeyond_OpeningSet.mp3" length="115205480"
+                       type="audio/mpeg"/>
+            <guid>abgt200</guid>
+            <pubDate>Fri, 30 Sep 2016 03:00:00 +0000</pubDate>
+            <itunes:author>Above &amp; Beyond</itunes:author>
+            <itunes:subtitle>Episode #200 / Above &amp; Beyond Opening Set Live at Ziggo Dome, Amsterdam
+            </itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>01:00:00</itunes:duration>
+        </item>
+        <item>
+            <title>#150 Group Therapy Radio with Above &amp; Beyond</title>
+            <link>http://www.aboveandbeyond.nu/radio/abgt150</link>
+            <description>Episode #150 / Live from Allphones Arena, Sydney</description>
+            <author>Above &amp; Beyond</author>
+            <enclosure url="http://traffic.libsyn.com/anjunabeats/ABGT150_AB.mp3" length="115205480" type="audio/mpeg"/>
+            <guid>abgt150</guid>
+            <pubDate>Tue, 29 Sep 2015 11:00:00 +0000</pubDate>
+            <itunes:author>Above &amp; Beyond</itunes:author>
+            <itunes:subtitle>Episode #150 / Live from Allphones Arena, Sydney</itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>02:00:00</itunes:duration>
+        </item>
+        <item>
+            <title>#100 Group Therapy Radio with Above &amp; Beyond</title>
+            <link>http://www.aboveandbeyond.nu/radio/abgt100</link>
+            <description>Episode #100 / Live from Madison Square Garden, New York City</description>
+            <author>Above &amp; Beyond</author>
+            <enclosure url="http://traffic.libsyn.com/anjunabeats/ABGT100-7-192.mp3" length="115205480"
+                       type="audio/mpeg"/>
+            <guid>abgt100</guid>
+            <pubDate>Mon, 20 Oct 2014 03:00:00 +0000</pubDate>
+            <itunes:author>Above &amp; Beyond</itunes:author>
+            <itunes:subtitle>Episode #100 / Live from Madison Square Garden, New York City</itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>02:00:00</itunes:duration>
+        </item>
+        <item>
+            <title>#ABGT050 Group Therapy Radio with Above &amp; Beyond</title>
+            <link>http://www.aboveandbeyond.nu/abgt050</link>
+            <description>Above &amp; Beyond live from Alexandra Palace, London - Saturday October
+                26
+            </description>
+            <author>Above &amp; Beyond</author>
+            <category>Music</category>
+            <enclosure url="http://traffic.libsyn.com/anjunabeats/ABGT050_AB.mp3" length="290787816" type="audio/mpeg"/>
+            <guid>ABGT050-Above_and_Beyond</guid>
+            <pubDate>Sat, 26 Oct 2013 11:00:00 +0000</pubDate>
+            <itunes:author>Above &amp; Beyond</itunes:author>
+            <itunes:subtitle>Above &amp; Beyond live from Alexandra Palace, London - Saturday October
+                26
+            </itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>02:00:00</itunes:duration>
+        </item>
+        <item>
+            <title>#001 Group Therapy Radio with Above &amp; Beyond</title>
+            <link>http://www.aboveandbeyond.nu/radio</link>
+            <description>Episode 001 / Live from Bangalore, India</description>
+            <author>Above &amp; Beyond</author>
+            <category>Music</category>
+            <enclosure url="http://traffic.libsyn.com/anjunabeats/ABGT001.mp3" length="116593450" type="audio/mpeg"/>
+            <guid>http://traffic.libsyn.com/anjunabeats/ABGT001.mp3</guid>
+            <pubDate>Wed, 14 Nov 2012 05:15:00 +0000</pubDate>
+            <itunes:author>Above &amp; Beyond</itunes:author>
+            <itunes:subtitle>Episode 001 / Live from Bangalore, India</itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:duration>02:01:09</itunes:duration>
+        </item>
+    </channel>
+</rss>
