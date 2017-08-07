@@ -55,6 +55,7 @@ function play() {
     else
       echo -e "Playing $number_of_episodes latest episodes."
     fi
+    echo "Playing episode. Press 'space' to pause/play."
     for url in $1
     do
         if [[ $randomize = true ]]
@@ -62,7 +63,6 @@ function play() {
           random_episode=$(echo $RANDOM % $number_of_episodes + 1 | bc)
           url=$(echo -e $1 | awk -v rand=$random_episode -F ' ' '{print $rand}')
         fi
-        echo "Playing episode. Press 'space' to pause/play."
         mplayer -vo null -really-quiet $url
     done
 }
